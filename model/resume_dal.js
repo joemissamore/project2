@@ -1,0 +1,206 @@
+/**
+ * Created by Joe on 11/16/16.
+ */
+var mysql   = require('mysql');
+var db  = require('./db_connection.js');
+
+/* DATABASE CONFIGURATION */
+var connection = mysql.createConnection(db.config);
+
+exports.getAll = function(callback) {
+    var query = 'SELECT * FROM resume_view;';
+
+    connection.query(query, function(err, result) {
+        callback(err, result);
+    });
+};
+
+exports.getById = function(resume_id, callback) {
+    var query = 'SELECT * FROM resume WHERE resume_id = ?';
+    var queryData = [resume_id];
+
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+    });
+};
+
+
+var resumeSchoolInsert = function (_query, resume_id, schoolIdArray, callback) {
+    var query = _query;
+    var resumeSchoolData = [];
+
+    if (schoolIdArray instanceof Array)
+    {
+        for (var i = 0; i < schoolIdArray.length; i++) {
+
+            resumeSchoolData.push([resume_id, schoolIdArray[i]]);
+            // console.log(resume_id + ', ' + schoolIdArray[i]);
+
+        }
+    }
+    else
+    {
+        resumeSchoolData.push([resume_id, schoolIdArray]);
+    }
+
+    connection.query(query, [resumeSchoolData], function (err, result) {
+        callback(err, result);
+    });
+
+
+}; // End resumeSchoolIntent
+
+
+
+var resumeSkillInsert = function (_query, resume_id, skillIdArray, callback) {
+    var query = _query;
+    var resumeSkillData = [];
+
+    if (skillIdArray instanceof Array)
+    {
+        for (var i = 0; i < skillIdArray.length; i++) {
+            resumeSkillData.push([resume_id, skillIdArray[i]]);
+        }
+    }
+
+    else
+    {
+        resumeSkillData.push([resume_id, skillIdArray]);
+    }
+
+
+    connection.query(query, [resumeSkillData], function (err, result) {
+        callback(err,result);
+    });
+
+
+}; // End resumeSKillInsert
+
+
+
+var resumeCompanyInsert = function(_query, resume_id, resumeCompanyArray, callback) {
+    var query = _query;
+    var resumeCompanyData = [];
+
+    if (resumeCompanyArray instanceof Array)
+    {
+        for (var i=0; i < resumeCompanyArray.length; i++) {
+            resumeCompanyData.push([resume_id, resumeCompanyArray[i]]);
+
+        }
+    }
+    else
+    {
+        resumeCompanyData.push([resume_id, resumeCompanyArray]);
+    }
+
+    connection.query(query, [resumeCompanyData], function (err, result) {
+        callback(err, result);
+    });
+
+
+}; // End resumeCompanyInsert
+
+
+        /* Module Exports */
+module.exports.resumeSchoolInsert = resumeSchoolInsert;
+module.exports.resumeCompanyInsert = resumeCompanyInsert;
+module.exports.resumeSkillInsert = resumeSkillInsert;
+        /* Module Exports */
+
+
+
+
+exports.insert = function (params, callback) {
+    var query = 'INSERT INTO resume (resume_name, account_id) VALUES (?, ?)';
+    var queryData = [params.resume_name, params.account_id];
+
+    connection.query(query, queryData, function (err, result) {
+        var resumeCompanyInsertQuery = 'INSERT INTO resume_company (resume_id, company_id) VALUES ?';
+        var resumeSkillInsertQuery = 'INSERT INTO resume_skill (resume_id, skill_id) VALUES ?';
+        var resumeSchoolInsertquery = 'INSERT INTO resume_school (resume_id, school_id) VALUES ?';
+        var resume_id_ = result.insertId;
+
+        resumeSchoolInsert(resumeSchoolInsertquery, resume_id_, params.school_id, function (err, result) {
+            resumeCompanyInsert(resumeCompanyInsertQuery, resume_id_, params.company_id, function (err, result) {
+                resumeSkillInsert(resumeSkillInsertQuery, resume_id_, params.skill_id, function (err, result) {
+                callback(err, result);
+
+                });
+            });
+        });
+
+
+exports.updateResume = function(params, callback) {
+    var query = 'UPDATE RESUME set account_id = (?) where resume_id = (?)';
+    var queryData = [params.account_id, params.resume_id];
+
+    connection.query(query, queryData, function (err, result) {
+
+    });
+};
+
+
+
+
+
+        /* RESUME SCHOOL DATA */
+        // var resumeSchoolData = [];
+        //  for (var i=0; i < params.school_id.length; i++) {
+        //  resumeSchoolData.push([resume_id, params.school_id[i]]);
+        //  console.log('school_id:' + params.school_id);
+        //  console.log(params);
+        //  }
+        //  connection.query(query1, [resumeSchoolData], function (err, result) {
+        //  // callback(err, result);
+        //  });
+
+
+        /* RESUME SCHOOL DATA */
+        // var resumeCompanyData = [];
+        // for (var i=0; i < params.company_id.length; i++) {
+        //     resumeCompanyData.push([resume_id, params.company_id[i]]);
+        //     console.log('company_id: ' + params.company_id[i]);
+        // }
+        // connection.query(query2, [resumeCompanyData], function(err, result){
+        // });
+
+        /* RESUME SCHOOL DATA */
+
+
+        //         /* RESUME SKILL DATA */
+        //         var resumeSkillData = [];
+        //         for (var i=0; i < params.skill_id.length; i++) {
+        //             resumeSkillData.push([resume_id, params.skill_id[i]]);
+        //         }
+        //         connection.query(query3, [resumeSkillData], function (err, result) {
+        //             callback(err, result);
+        //         });
+        //
+        //     });
+        //
+    });
+
+};
+
+
+
+exports.delete = function(resume_id, callback) {
+    var query = 'DELETE FROM resume where resume_id = ?';
+    var queryData = [resume_id];
+
+    connection.query(query, queryData, function(err, result){
+        callback(err, result);
+    });
+};
+
+exports.update = function(params, callback) {
+    var query = 'UPDATE resume SET resume_name = ? WHERE resume_id = ?';
+
+    var queryData = [params.resume_name, params.resume_id];
+
+    connection.query(query, queryData, function(err, result) {
+        callback(err, result);
+
+    });
+};
