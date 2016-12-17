@@ -10,8 +10,8 @@
 6 silly lifecycle resumewebapp@0.0.0~prestart: no script for prestart, continuing
 7 info lifecycle resumewebapp@0.0.0~start: resumewebapp@0.0.0
 8 verbose lifecycle resumewebapp@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle resumewebapp@0.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Joe/Documents/school/cs355f16/ResumeWebApp/node_modules/.bin:/Users/Joe/Library/apache-maven-3.3.9/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin
-10 verbose lifecycle resumewebapp@0.0.0~start: CWD: /Users/Joe/Documents/school/cs355f16/ResumeWebApp
+9 verbose lifecycle resumewebapp@0.0.0~start: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/Joe/Documents/team/cs355f16/ResumeWebApp/node_modules/.bin:/Users/Joe/Library/apache-maven-3.3.9/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/MacGPG2/bin
+10 verbose lifecycle resumewebapp@0.0.0~start: CWD: /Users/Joe/Documents/team/cs355f16/ResumeWebApp
 11 silly lifecycle resumewebapp@0.0.0~start: Args: [ '-c', 'node ./bin/www' ]
 12 silly lifecycle resumewebapp@0.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle resumewebapp@0.0.0~start: Failed to exec start script
@@ -26,7 +26,7 @@
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid resumewebapp@0.0.0
-16 verbose cwd /Users/Joe/Documents/school/cs355f16/ResumeWebApp
+16 verbose cwd /Users/Joe/Documents/team/cs355f16/ResumeWebApp
 17 error Darwin 16.1.0
 18 error argv "/usr/local/bin/node" "/usr/local/lib/node_modules/npm/bin/npm-cli.js" "run-script" "start"
 19 error node v6.9.1

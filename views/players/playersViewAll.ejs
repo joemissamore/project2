@@ -1,0 +1,29 @@
+<%- include("../includes/header.ejs", {title:"View All players"}); %>
+<h1>Players</h1>
+<table border="1">
+    <a href="/players/add">Add New players</a> <br />
+
+    <br />
+
+    <tr><th>Name</th><th>Year</th><th>Team Name</th><th>Position</th><th>Action</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td>
+            <a href="/players/?player_id=<%= result[i].player_id %>">
+                <%= result[i].first_name %> <%= result[i].last_name %></td>
+            </a>
+        <td><%= result[i].year %></td>
+        <td><%= result[i].team_name %></td>
+        <td><%= result[i].position %></td>
+
+
+        <td>
+            <form action="/players/delete/">
+                <input type="hidden" name="player_id" id="player_id" value="<%= result[i].player_id %>" />
+                <input type="submit" value="Delete" />
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<%- include("../includes/footer.ejs"); %>

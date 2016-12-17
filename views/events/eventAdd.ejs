@@ -15,16 +15,16 @@ Modify the Resume insert form so that it allows user to
     <!-- Initialize the multiselect plugin: -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#account_id').multiselect();
+            $('#players_id').multiselect();
         });
     </script>
 
-    <!-- select account -->
+    <!-- select players -->
 
     Last Name:
-    <select id="account_id" name="account_id" multiple="multiple">
-        <% for(var i=0; account.length > i; i++ ) { %>
-        <option value="<%= account[i].account_id %>"> <%= account[i].last_name %></option>
+    <select id="players_id" name="players_id" multiple="multiple">
+        <% for(var i=0; players.length > i; i++ ) { %>
+        <option value="<%= players[i].players_id %>"> <%= players[i].last_name %></option>
         <% } %>
     </select>
 
@@ -74,18 +74,18 @@ Modify the Resume insert form so that it allows user to
     <br />
 
 
-    <!-- multiple schools -->
+    <!-- multiple teams -->
     <!-- Initialize the multiselect plugin: -->
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#school_id').multiselect();
+            $('#team_id').multiselect();
         });
     </script>
 
-    School:
-    <select id="school_id" name="school_id" multiple="multiple">
-        <% for (var i=0; school.length > i; i++) { %>
-        <option value="<%= school[i].school_id %>"> <%= school[i].school_name %></option>
+    team:
+    <select id="team_id" name="team_id" multiple="multiple">
+        <% for (var i=0; team.length > i; i++) { %>
+        <option value="<%= team[i].team_id %>"> <%= team[i].team_name %></option>
         <% } %>
     </select>
 
@@ -93,6 +93,4 @@ Modify the Resume insert form so that it allows user to
     <input type="submit" />
 
 </form>
-</body>
-
-</html>
+<%- include("../includes/footer.ejs"); %>

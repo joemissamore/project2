@@ -1,0 +1,25 @@
+<%- include("../includes/header.ejs", {title:"View All SSU Teams"}); %>
+<h1>Add New team</h1>
+<form action="/team/insert" method="get">
+    Team Name: <input id="team_name" name="team_name" type="text" />
+    <br />
+    <br />
+    Gender
+    <select id="gender" name="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+
+    <br />
+    <br />
+
+    Category: <input id="category" name="category" type="text" />
+
+    <br />
+    <br />
+
+    <input type="submit" />
+
+</form>
+
+<%- include("../includes/footer.ejs"); %>

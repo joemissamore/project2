@@ -6,11 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var school = require('./routes/school_routes');
-var account = require('./routes/account_routes');
-var resume = require('./routes/resume_routes');
-var address = require('./routes/address_routes');
-var skill = require('./routes/skill_routes');
+var team = require('./routes/team_routes');
+var players = require('./routes/players_routes');
+var events = require('./routes/events_routes');
+var about = require('./routes/about_routes');
+var contact = require('./routes/contact_routes');
 var app = express();
 
 // view engine setup
@@ -26,12 +26,15 @@ app.use(cookieParser());
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use("/public", express.static(path.join(__dirname, 'public')));
+
 app.use('/', index);
-app.use('/school', school);
-app.use('/account', account);
-app.use('/resume', resume);
-app.use('/address', address);
-app.use('/skill', skill);
+app.use('/team', team);
+app.use('/players', players);
+app.use('/events', events);
+app.use('/about', about);
+app.use('/contact', contact);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

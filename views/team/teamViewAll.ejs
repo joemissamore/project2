@@ -1,0 +1,25 @@
+<%- include("../includes/header.ejs", {title:"View All SSU Teams"}); %>
+<h1>Teams</h1>
+<a href="/team/add">Add New Team</a> <br />
+
+<br />
+
+<table border="1">
+    <tr><th>Name</th><th>Gender</th><th>Category</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/team/?team_id=<%= result[i].team_id %>"><%= result[i].team_name %></a></td>
+        <td><%= result[i].gender %></td>
+        <td><%= result[i].category %></td>
+        <!--<td>-->
+            <!--&lt;!&ndash;<form action="/team/delete/">&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="hidden" name="players_id" id="players_id" value="<%= result[i].players_id %>" />&ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="submit" value="Delete" />&ndash;&gt;-->
+            <!--&lt;!&ndash;</form>&ndash;&gt;-->
+        <!--</td>-->
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<%- include("../includes/footer.ejs"); %>

@@ -1,6 +1,6 @@
 exports.config = {
-    user: 'missamore',
-    password: 'haderman_raiders',
-    host: 'blue.cs.sonoma.edu',
-    database: 'missamore'
+    user: 'root',
+    password: 'password',
+    host: 'localhost',
+    database: 'ssu_sports'
 };

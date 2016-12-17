@@ -1,0 +1,20 @@
+<%- include("../includes/header.ejs", {title:"View All players"}); %>
+<h1>Events</h1>
+<table border="1">
+    <!--<a href="/events/add">Add New events</a> <br />-->
+
+    <br />
+
+
+    <tr><th>Team Name</th><th>Location</th><th>Start Date & Time</th><th>End Date & Time</th></tr>
+    <% for (var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><%= result[i].team_name %></td>
+        <td><%= result[i].city %>, <%= result[i].state %></td>
+        <td><%= result[i].location_start_datetime %></td>
+        <td><%= result[i].location_stop_datetime %></td>
+    </tr>
+    <% } %>
+</table>
+
+<%- include("../includes/footer.ejs"); %>

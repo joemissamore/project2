@@ -1,0 +1,13 @@
+<%- include("../includes/header.ejs", {title: result[0].team_name}); %>
+<h1><%= result[0].team_name %> Roster</h1>
+<table>
+    <tr><th>Name</th><th>Position</th><th>Year</th></tr>
+        <% for (var i=0; result.length > i; i++) { %>
+        <tr>
+            <td><a href="/players/?player_id=<%= result[i].player_id%>"><%= result[i].first_name %> <%= result[i].last_name %></a></td>
+            <td><%= result[i].position %></td>
+            <td><%= result[i].year %></td>
+        </tr>
+        <% } %>
+</table>
+<%- include("../includes/footer.ejs"); %>
